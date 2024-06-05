@@ -3,6 +3,7 @@
     "@radix-ui/colors": "latest",
     "@radix-ui/react-icons": "latest",
     "@radix-ui/react-slider": "latest",
+    "@vercel/speed-insights": "^1.0.11",
     "classnames": "latest",
     "react": "latest",
     "react-dom": "latest"
