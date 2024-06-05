@@ -249,7 +249,7 @@ class Game extends Component {
       <div className="game-container">
         <h1 className="game-title text-4xl mb-8">Tic Tac Toe Online Game</h1>
         {!tossCompleted && (
-          <button className="toss-btn" onClick={this.tossCoin}>
+          <button className="restart-btn" onClick={this.tossCoin}>
             Toss Coin
           </button>
         )}
