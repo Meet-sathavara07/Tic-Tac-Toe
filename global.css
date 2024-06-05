@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.square:hover {
+  background-color: #2980b9; /* Hover background color (darker blue) */
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.restart-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4caf50; /* Button background color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.restart-btn:hover {
+  background-color: #45a049; /* Button hover background color */
+}
+.weather-app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://images.pexels.com/photos/1933180/pexels-photo-1933180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  background-position: center;
+}
+
+.weather-app-content {
+  text-align: center;
+  background-color: transparent;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+  width: 50%;
+  max-width: 600px;
+  backdrop-filter: blur(6px); /* Adjust the blur radius as needed */
+}
+
+.weather-app-heading {
+  font-size: 2.5rem; /* Reduced font size */
+  margin-bottom: 30px; /* Reduced margin */
+}
+
+.weather-app-select-dropdown {
+  width: 100%;
+  padding: 15px; /* Reduced padding */
+  font-size: 1.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.weather-app-error {
+  color: red;
+  font-size: 1.4rem;
+  margin-top: 10px;
+}
+
+.weather-app-search-link {
+  color: blue;
+  cursor: pointer;
+}
+
+.weather-app-info {
+  margin-top: 20px;
+}
+
+.weather-app-city {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.weather-app-temperature {
+  font-size: 1.6rem;
+}
+
+.tic-tac-toe-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.tic-tac-toe-box {
+  font-size: 2rem;
+  background-color: red;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tic-tac-toe-box:hover {
+  background-color: #e0e0e0;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #192a32;
+  height: 100vh;
+  color: white;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.row {
+  display: flex;
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  border: 2px solid #aaa;
+  border-radius: 6px;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: #3498db; /* Square background color (blue) */
+  color: #fff; /* Square text color (white) */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

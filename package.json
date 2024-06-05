@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@radix-ui/colors": "latest",
+    "@radix-ui/react-icons": "latest",
+    "@radix-ui/react-slider": "latest",
+    "classnames": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "vite": "latest"
+  },
+  "scripts": {
+    "start": "vite"
+  }
+}
