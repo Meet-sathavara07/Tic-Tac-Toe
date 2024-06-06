@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Board from './Board';
+import ScoreBoard from './ScoreBoard';
 import { initBoxes, players, symbols, findBestMove, checkWinner } from '../logic/gameLogic';
 import '../../global.css';
 
@@ -13,6 +14,9 @@ class Game extends Component {
       tossCompleted: false,
       showGame: false,
       computerTurn: false,
+      userWins: 0,
+      computerWins: 0,
+      draw: 0,
     };
     this.computerPlay = this.computerPlay.bind(this);
     this.tossCoin = this.tossCoin.bind(this);
@@ -24,6 +28,18 @@ class Game extends Component {
       if (this.state.computerTurn) {
         setTimeout(this.computerPlay, 500);
       }
+    }
+
+    if (this.state.winner && prevState.winner !== this.state.winner) {
+      if (this.state.winner === players.USER) {
+        this.setState((prevState) => ({ userWins: prevState.userWins + 1 }));
+      } else if (this.state.winner === players.COMPUTER) {
+        this.setState((prevState) => ({ computerWins: prevState.computerWins + 1 }));
+      } else {
+        this.setState((prevState) => ({ draw: prevState.draw + 1 }));
+      }
+
+      setTimeout(this.restartGame, 1500);
     }
   }
 
@@ -68,19 +84,24 @@ class Game extends Component {
     });
   }
 
-  restartGame() {
-    this.setState({
-      boxes: initBoxes,
-      currentPlayer: null,
-      winner: null,
-      tossCompleted: false,
-      showGame: false,
-      computerTurn: false,
-    });
-  }
+   restartGame() {
+    const { currentPlayer } = this.state;
+
+  // Determine the next player for the next round based on the round number
+  const roundNumber = this.state.userWins + this.state.computerWins + this.state.draw ;
+  const nextPlayer = roundNumber % 2 === 1 ? players.USER : players.COMPUTER;
+
+  this.setState({
+    boxes: initBoxes,
+    currentPlayer: nextPlayer,
+    winner: null,
+    tossCompleted: true, // Skip the coin toss for the next round
+    computerTurn: nextPlayer === players.COMPUTER,
+  });
+}
 
   render() {
-    const { tossCompleted, showGame, winner, boxes, currentPlayer } = this.state;
+    const { tossCompleted, showGame, winner, boxes, currentPlayer, userWins, computerWins, draw } = this.state;
     const gameInProgress = boxes.some((row) => row.some((cell) => cell === ""));
     const status = winner
       ? winner === "Draw"
@@ -90,9 +111,10 @@ class Game extends Component {
 
     return (
       <div className="game-container">
-        <h1 className="game-title text-4xl mb-8">Tic Tac Toe Online Game</h1>
+        <h1 className="game-title ">Tic Tac Toe Online Game</h1>
+        <ScoreBoard userWins={userWins} computerWins={computerWins} draw={draw} />
         {!tossCompleted && (
-          <button className="restart-btn" onClick={this.tossCoin}>
+          <button className="toss-btn" onClick={this.tossCoin}>
             Toss Coin
           </button>
         )}
@@ -106,11 +128,6 @@ class Game extends Component {
               currentPlayer={currentPlayer}
             />
             <div className="status">{status}</div>
-            {(winner || !gameInProgress) && (
-              <button className="restart-btn" onClick={this.restartGame}>
-                Restart Game
-              </button>
-            )}
           </div>
         )}
       </div>

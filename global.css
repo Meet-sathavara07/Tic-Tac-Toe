@@ -1,8 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html {
+  pointer-events: auto;
+}
 
-/* Game Container */
+@font-face {
+  font-family: "Futura PT Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Futura PT Medium"),
+      url("./src/assets/futura-pt-cufonfonts-webfont/FuturaCyrillicMedium.woff") format("woff");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Futura PT Medium", sans-serif;
+  text-decoration: none;
+}
+
+
 .game-container {
   display: flex;
   flex-direction: column;
@@ -13,13 +29,11 @@
   color: white;
 }
 
-/* Game Title */
 .game-title {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Board */
 .board {
   display: flex;
   flex-direction: column;
@@ -30,12 +44,10 @@
   background-color: #f0f0f0;
 }
 
-/* Row */
 .row {
   display: flex;
 }
 
-/* Square */
 .square {
   width: 80px;
   height: 80px;
@@ -54,13 +66,11 @@
   background-color: #2980b9; /* Hover background color (darker blue) */
 }
 
-/* Status */
 .status {
   margin-top: 20px;
   font-size: 24px;
 }
 
-/* Restart Button */
 .restart-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -77,25 +87,50 @@
   background-color: #45a049; /* Button hover background color */
 }
 
-/* Tic Tac Toe Board */
-.tic-tac-toe-board {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-}
 
-/* Tic Tac Toe Box */
-.tic-tac-toe-box {
-  font-size: 2rem;
-  background-color: red;
-  border: 1px solid #ccc;
+.game-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #192a32;
+  height: 100vh;
+  color: white;
+}
+
+.game-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.toss-btn, .restart-btn, .reset-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4caf50; /* Button background color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.tic-tac-toe-box:hover {
-  background-color: #e0e0e0;
+.toss-btn:hover, .restart-btn:hover, .reset-btn:hover {
+  background-color: #45a049; /* Button hover background color */
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.score {
+  font-size: 24px;
 }
