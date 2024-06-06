@@ -4,9 +4,10 @@
     "@radix-ui/react-icons": "latest",
     "@radix-ui/react-slider": "latest",
     "@vercel/speed-insights": "^1.0.11",
+    "axios": "^1.7.2",
     "classnames": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "latest",
