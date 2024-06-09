@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
-import Board from './Board';
-import ScoreBoard from './ScoreBoard';
-import { initBoxes, players, symbols, findBestMove, checkWinner } from '../logic/gameLogic';
-import '../../global.css';
+import React, { Component } from "react";
+import Board from "./Board";
+import ScoreBoard from "./ScoreBoard";
+import {
+  initBoxes,
+  players,
+  symbols,
+  findBestMove,
+  checkWinner,
+} from "../logic/gameLogic";
+import "../../global.css";
 
 class Game extends Component {
   constructor(props) {
@@ -16,11 +22,12 @@ class Game extends Component {
       computerTurn: false,
       userWins: 0,
       computerWins: 0,
-      draw: 0,
+      draws: 0,
     };
     this.computerPlay = this.computerPlay.bind(this);
     this.tossCoin = this.tossCoin.bind(this);
     this.restartGame = this.restartGame.bind(this);
+    this.handleScreenClick = this.handleScreenClick.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -34,12 +41,12 @@ class Game extends Component {
       if (this.state.winner === players.USER) {
         this.setState((prevState) => ({ userWins: prevState.userWins + 1 }));
       } else if (this.state.winner === players.COMPUTER) {
-        this.setState((prevState) => ({ computerWins: prevState.computerWins + 1 }));
-      } else {
-        this.setState((prevState) => ({ draw: prevState.draw + 1 }));
+        this.setState((prevState) => ({
+          computerWins: prevState.computerWins + 1,
+        }));
+      } else if (this.state.winner === "Draw") {
+        this.setState((prevState) => ({ draws: prevState.draws + 1 }));
       }
-
-      setTimeout(this.restartGame, 1500);
     }
   }
 
@@ -57,8 +64,8 @@ class Game extends Component {
         row.map((cell, cIndex) =>
           rIndex === outerIndex && cIndex === innerIndex
             ? symbols[currentPlayer]
-            : cell,
-        ),
+            : cell
+        )
       );
 
       const winner = checkWinner(updatedBoxes);
@@ -84,35 +91,68 @@ class Game extends Component {
     });
   }
 
-   restartGame() {
-    const { currentPlayer } = this.state;
+  restartGame() {
+    const { userWins, computerWins, draws } = this.state;
+    const roundNumber = userWins + computerWins + draws + 1;
+    const nextPlayer = roundNumber % 2 === 1 ? players.USER : players.COMPUTER;
 
-  // Determine the next player for the next round based on the round number
-  const roundNumber = this.state.userWins + this.state.computerWins + this.state.draw ;
-  const nextPlayer = roundNumber % 2 === 1 ? players.USER : players.COMPUTER;
+    this.setState({
+      boxes: initBoxes,
+      currentPlayer: nextPlayer,
+      winner: null,
+      tossCompleted: true,
+      computerTurn: nextPlayer === players.COMPUTER,
+    });
+  }
 
-  this.setState({
-    boxes: initBoxes,
-    currentPlayer: nextPlayer,
-    winner: null,
-    tossCompleted: true, // Skip the coin toss for the next round
-    computerTurn: nextPlayer === players.COMPUTER,
-  });
-}
+  handleScreenClick() {
+    const { winner } = this.state;
+    if (winner) {
+      this.restartGame();
+    }
+  }
 
   render() {
-    const { tossCompleted, showGame, winner, boxes, currentPlayer, userWins, computerWins, draw } = this.state;
+    const {
+      tossCompleted,
+      showGame,
+      winner,
+      boxes,
+      currentPlayer,
+      userWins,
+      computerWins,
+      draws,
+    } = this.state;
     const gameInProgress = boxes.some((row) => row.some((cell) => cell === ""));
-    const status = winner
-      ? winner === "Draw"
-        ? "It's a Draw!"
-        : `Winner: ${winner}`
-      : `Next player: ${currentPlayer}`;
+    const status = winner ? (
+      winner === "Draw" ? (
+        <div>
+          It's a Draw!
+          <br />
+          Click to restart.
+        </div>
+      ) : (
+        <div>
+          Winner: {winner}.<br />
+          Click to restart.
+        </div>
+      )
+    ) : (
+      `Turn: ${currentPlayer}`
+    );
 
     return (
-      <div className="game-container">
-        <h1 className="game-title ">Tic Tac Toe Online Game</h1>
-        <ScoreBoard userWins={userWins} computerWins={computerWins} draw={draw} />
+      <div className="game-container" onClick={this.handleScreenClick}>
+        <div className="header">
+          <h1 className="game-title text-4xl mb-8">Tic Tac Toe Online Game</h1>
+        </div>
+        {showGame && (
+          <ScoreBoard
+            userWins={userWins}
+            computerWins={computerWins}
+            draws={draws}
+          />
+        )}
         {!tossCompleted && (
           <button className="toss-btn" onClick={this.tossCoin}>
             Toss Coin

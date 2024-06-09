@@ -18,6 +18,16 @@ html {
   text-decoration: none;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #192a32;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  z-index: 1;
+}
 
 .game-container {
   display: flex;
@@ -42,6 +52,7 @@ html {
   border-radius: 8px;
   padding: 10px;
   background-color: #f0f0f0;
+  
 }
 
 .row {
@@ -56,22 +67,26 @@ html {
   border-radius: 6px;
   font-size: 36px;
   font-weight: bold;
-  background-color: #3498db; /* Square background color (blue) */
-  color: #fff; /* Square text color (white) */
+  background-color: #3498db; 
+  color: #fff; 
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .square:hover {
-  background-color: #2980b9; /* Hover background color (darker blue) */
+  background-color: #2980b9; 
 }
 
 .status {
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 23px;
+  text-align: center; /* Center align the text */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  overflow: hidden; /* Hides overflowed content */
+  text-overflow: ellipsis; /* Adds ellipsis to overflowed content */
 }
 
-.restart-btn {
+
+.toss-btn {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 18px;
@@ -83,44 +98,7 @@ html {
   transition: background-color 0.3s;
 }
 
-.restart-btn:hover {
-  background-color: #45a049; /* Button hover background color */
-}
-
-
-.game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #192a32;
-  height: 100vh;
-  color: white;
-}
-
-.game-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.status {
-  margin-top: 20px;
-  font-size: 24px;
-}
-
-.toss-btn, .restart-btn, .reset-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #4caf50; /* Button background color */
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.toss-btn:hover, .restart-btn:hover, .reset-btn:hover {
+.toss-btn:hover{
   background-color: #45a049; /* Button hover background color */
 }
 
