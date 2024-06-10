@@ -17,7 +17,6 @@ const ScoreBoard = ({ userWins, computerWins, draws }) => {
         <span>Computer : </span>
         <span>{computerWins}</span>
       </div>
-      
     </div>
   );
 };

@@ -7,13 +7,13 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 let gameState = {
-  boxes: Array(3).fill(Array(3).fill("")),
+  boxes: Array(3).fill(Array(3).fill('')),
   currentPlayer: null,
 };
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  
+
   socket.emit('gameState', gameState);
 
   socket.on('disconnect', () => {

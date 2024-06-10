@@ -1,14 +1,8 @@
-import React, { Component } from "react";
-import Board from "./Board";
-import ScoreBoard from "./ScoreBoard";
-import {
-  initBoxes,
-  players,
-  symbols,
-  findBestMove,
-  checkWinner,
-} from "../logic/gameLogic";
-import "../../global.css";
+import React, { Component } from 'react';
+import Board from './Board';
+import ScoreBoard from './ScoreBoard';
+import { initBoxes, players, symbols, findBestMove, checkWinner } from '../logic/gameLogic';
+import '../../global.css';
 
 class Game extends Component {
   constructor(props) {
@@ -44,7 +38,7 @@ class Game extends Component {
         this.setState((prevState) => ({
           computerWins: prevState.computerWins + 1,
         }));
-      } else if (this.state.winner === "Draw") {
+      } else if (this.state.winner === 'Draw') {
         this.setState((prevState) => ({ draws: prevState.draws + 1 }));
       }
     }
@@ -58,19 +52,16 @@ class Game extends Component {
 
   onSelectBox(outerIndex, innerIndex) {
     this.setState(({ boxes, currentPlayer }) => {
-      if (boxes[outerIndex][innerIndex] !== "") return null;
+      if (boxes[outerIndex][innerIndex] !== '') return null;
 
       const updatedBoxes = boxes.map((row, rIndex) =>
         row.map((cell, cIndex) =>
-          rIndex === outerIndex && cIndex === innerIndex
-            ? symbols[currentPlayer]
-            : cell
-        )
+          rIndex === outerIndex && cIndex === innerIndex ? symbols[currentPlayer] : cell,
+        ),
       );
 
       const winner = checkWinner(updatedBoxes);
-      const nextPlayer =
-        currentPlayer === players.USER ? players.COMPUTER : players.USER;
+      const nextPlayer = currentPlayer === players.USER ? players.COMPUTER : players.USER;
 
       return {
         boxes: updatedBoxes,
@@ -113,19 +104,11 @@ class Game extends Component {
   }
 
   render() {
-    const {
-      tossCompleted,
-      showGame,
-      winner,
-      boxes,
-      currentPlayer,
-      userWins,
-      computerWins,
-      draws,
-    } = this.state;
-    const gameInProgress = boxes.some((row) => row.some((cell) => cell === ""));
+    const { tossCompleted, showGame, winner, boxes, currentPlayer, userWins, computerWins, draws } =
+      this.state;
+    const gameInProgress = boxes.some((row) => row.some((cell) => cell === ''));
     const status = winner ? (
-      winner === "Draw" ? (
+      winner === 'Draw' ? (
         <div>
           It's a Draw!
           <br />
@@ -146,13 +129,7 @@ class Game extends Component {
         <div className="header">
           <h1 className="game-title text-4xl mb-8">Tic Tac Toe Online Game</h1>
         </div>
-        {showGame && (
-          <ScoreBoard
-            userWins={userWins}
-            computerWins={computerWins}
-            draws={draws}
-          />
-        )}
+        {showGame && <ScoreBoard userWins={userWins} computerWins={computerWins} draws={draws} />}
         {!tossCompleted && (
           <button className="toss-btn" onClick={this.tossCoin}>
             Toss Coin
@@ -162,9 +139,7 @@ class Game extends Component {
           <div>
             <Board
               boxes={boxes}
-              onSelectBox={(outerIndex, innerIndex) =>
-                this.onSelectBox(outerIndex, innerIndex)
-              }
+              onSelectBox={(outerIndex, innerIndex) => this.onSelectBox(outerIndex, innerIndex)}
               currentPlayer={currentPlayer}
             />
             <div className="status">{status}</div>
