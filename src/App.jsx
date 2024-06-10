@@ -1,6 +1,6 @@
 // export default Game;
 import React from 'react';
-import Game from './src/components/game';
+import Game from './components/game';
 
 const App = () => {
   return (

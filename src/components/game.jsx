@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
 import { initBoxes, players, symbols, findBestMove, checkWinner } from '../logic/gameLogic';
-import '../../global.css';
+import '../global.css';
 
 class Game extends Component {
   constructor(props) {

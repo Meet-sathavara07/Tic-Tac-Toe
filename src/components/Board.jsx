@@ -1,6 +1,6 @@
 import React from 'react';
 import Square from './Square';
-import '../../global.css';
+import '../global.css';
 
 const Board = ({ boxes, onSelectBox, currentPlayer }) => {
   return (
