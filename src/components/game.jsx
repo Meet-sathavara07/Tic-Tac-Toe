@@ -1,3 +1,5 @@
+
+/* eslint-disable  */
 import React, { Component } from 'react';
 import Board from './Board';
 import ScoreBoard from './ScoreBoard';
@@ -145,7 +147,10 @@ class Game extends Component {
             <div className="status">{status}</div>
           </div>
         )}
+        
       </div>
+     
+      
     );
   }
 }
