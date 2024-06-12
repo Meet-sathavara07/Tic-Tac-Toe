@@ -38,7 +38,7 @@ html {
   background-color: #192a32;
   height: 100vh;
   color: white;
-  padding-top: 70px; 
+  padding-top: 50px; 
 }
 
 .game-title {
@@ -84,7 +84,7 @@ html {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 80px;
+  height: 80px; 
 }
 
 .toss-btn {
@@ -99,7 +99,7 @@ html {
   transition: all 0.3s;
   line-height: 1.4em;
   border: 2px solid var(--green);
-  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%, transparent 60%, rgba(27, 253, 156, 0.1) 100%);
   color: var(--green);
   box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
 }
@@ -108,21 +108,22 @@ html {
   color: #82ffc9;
   box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
 }
-.toss-btn::before{
+
+.toss-btn::before {
   content: "";
   position: absolute;
   left: -4em;
   width: 4em;
   height: 100%;
   top: 0;
-  transition: transform .5s ease-in-out;
-  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+  transition: transform 0.5s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%, rgba(27, 253, 156, 0.1) 60%, transparent 100%);
 }
 
-.toss-btn:hover::before{
+.toss-btn:hover::before {
   transform: translateX(15em);
-
 }
+
 .scoreboard {
   display: flex;
   justify-content: space-around;
@@ -130,9 +131,103 @@ html {
   width: 100%;
   margin-bottom: 40px;
   font-size: 30px;
-  margin-top: 15px; 
+  margin-top: 15px;
 }
 
 .score {
   font-size: 24px;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 768px) {
+  .header {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .game-container {
+    padding-top: 80px;
+  }
+
+  .game-title {
+    font-size: 24px;
+  }
+
+  .board {
+    padding: 8px;
+  }
+
+  .square {
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    font-size: 28px;
+  }
+
+  .status {
+    font-size: 18px;
+    padding: 8px; /* Added padding */
+  }
+
+  .toss-btn {
+    font-size: 14px;
+    padding: 0.6em 2.5em;
+  }
+
+  .scoreboard {
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+
+  .score {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .game-container {
+    padding-top: 70px;
+  }
+
+  .game-title {
+    font-size: 20px;
+  }
+
+  .board {
+    padding: 6px;
+  }
+
+  .square {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+    font-size: 24px;
+  }
+
+  .status {
+    font-size: 16px;
+    padding: 6px; /* Added padding */
+  }
+
+  .toss-btn {
+    font-size: 12px;
+    padding: 0.5em 2.3em;
+  }
+
+  .scoreboard {
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+
+  .score {
+    font-size: 16px;
+  }
 }
