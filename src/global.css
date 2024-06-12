@@ -137,9 +137,7 @@ html {
 .score {
   font-size: 24px;
 }
-
-/* Media Queries for Responsiveness */
-
+/* 
 @media (max-width: 768px) {
   .header {
     font-size: 18px;
@@ -167,7 +165,7 @@ html {
 
   .status {
     font-size: 18px;
-    padding: 8px; /* Added padding */
+    padding: 8px; 
   }
 
   .toss-btn {
@@ -184,7 +182,7 @@ html {
   .score {
     font-size: 20px;
   }
-}
+} */
 
 @media (max-width: 480px) {
   .header {
